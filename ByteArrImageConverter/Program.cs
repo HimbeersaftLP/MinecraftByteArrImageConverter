@@ -38,10 +38,10 @@ namespace ByteArrImageConverter {
                 for (int x = 0; x < 64; x++) {
                     var pixel = img.GetPixel(x, y);
                     int i = 64 * 4 * y + x * 4;
-                    byteArr[i] = pixel.A;
-                    byteArr[i + 1] = pixel.R;
-                    byteArr[i + 2] = pixel.G;
-                    byteArr[i + 3] = pixel.B;
+                    byteArr[i] = pixel.R;
+                    byteArr[i + 1] = pixel.G;
+                    byteArr[i + 2] = pixel.B;
+                    byteArr[i + 3] = pixel.A;
                 }
             }
             var file = File.Create(path + ".txt");
@@ -59,10 +59,10 @@ namespace ByteArrImageConverter {
             for (int i = 0; i < byteAmount; i += 4) {
                 int x = (i / 4) % 64,
                 y = (i / 4) / 64,
-                a = pixels[i],
-                r = pixels[i + 1],
-                g = pixels[i + 2],
-                b = pixels[i + 3];
+                r = pixels[i],
+                g = pixels[i + 1],
+                b = pixels[i + 2],
+                a = pixels[i + 3];
                 img.SetPixel(x, y, Color.FromArgb(a, r, g, b));
             }
             img.Save(path + ".png");
